@@ -104,11 +104,13 @@ echo "export PATH=$PATH" >> $CONDA_ENVIRONMENT_FILE_NAME
 echo "source $CONDA_HOME/etc/profile.d/conda.sh"  >> $CONDA_ENVIRONMENT_FILE_NAME
 ##
 cd /home/uxeng/dev/
-apt-get install git -y
 
+apt-get install git -y
 # Ignores
 echo "src/app.egg-info/" >> .gitignore
 echo "__pycache__/" >> .gitignore
+echo "dist/" >> .gitingore
+
 
 git config --global --add safe.directory /home/uxeng/dev
 git config --global user.email "you@example.com"

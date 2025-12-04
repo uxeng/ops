@@ -15,7 +15,7 @@ COPY pyproject.toml /home/uxeng/dev/
 COPY LICENSE.txt /home/uxeng/dev/
 COPY README.md /home/uxeng/dev/
 COPY MANIFEST.in /home/uxeng/dev/
-COPY ./src /home/uxeng/dev/src/dev
+COPY ./src /home/uxeng/dev/src/
 COPY ./tests /home/uxeng/dev/tests/
 RUN chmod +x /home/uxeng/run_conda_installer.sh
 WORKDIR /home/uxeng

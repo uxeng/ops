@@ -2,7 +2,7 @@
 #
 ./run_disable_ipv6.sh
 #
-CONTEXT="BACKSTAGE"
+CONTEXT="uxeng"
 if [[ -z "${DATA_DIR}" ]]; then
   export DATA_DIR="/data"
 fi
@@ -21,20 +21,6 @@ echo "DATA_DIR: $DATA_DIR"
 echo "DEPLOY_VER: $DEPLOY_VER"
 mkdir -p $DEPLOY_VER
 
-## NVM
-if [[ -z "${NVM_VER}" ]]; then
-  export NVM_VER="v0.40.3"
-else
-   echo "Using NVM_VER external"
-fi
-
-echo "Using NVM_VER: $NVM_VER"
-curl -L -O --url https://raw.githubusercontent.com/nvm-sh/nvm/$NVM_VER/install.sh 
-# export NVM_DIR="$DATA_DIR/$DEPLOY_VER"
-chmod +x ./install.sh
-./install.sh
-export NVM_HOME="$$HOME/.nvm"
-
 
 DADIF_PATHS=""
 export PATH="$DADIF_PATHS":$PATH
@@ -49,7 +35,7 @@ DADIF_TMP_DIR="$DATA_DIR/$DEPLOY_VER/DEPLOYER"
 MINICONDA_NAME=miniconda
 MINICONDA_PATH=$DATA_DIR/$DEPLOY_VER_CONDA/$MINICONDA_NAME/
 PATH=$MINICONDA_PATH/bin:$PATH
-CONDA_ENV="backstage"
+CONDA_ENV="uxeng"
 CONDA_ENV_HOME=$(pwd)/apps/$CONDA_ENV
 CONDA_HOME="$DATA_DIR/$DEPLOY_VER_CONDA/miniconda"
 
@@ -76,9 +62,9 @@ then
 fi
 
 conda list --name $CONDA_ENV
-BACKSTAGE_CONDA_ENV_EXIST=$?
-echo "BACKSTAGE_CONDA_ENV_EXIST? $BACKSTAGE_CONDA_ENV_EXIST"
-if [ "$BACKSTAGE_CONDA_CONDA_ENV_EXIST" -eq "0" ]; then
+UXENG_CONDA_ENV_EXIST=$?
+echo "UXENG_CONDA_ENV_EXIST? $BACKSTAGE_CONDA_ENV_EXIST"
+if [ "$UXENG_CONDA_CONDA_ENV_EXIST" -eq "0" ]; then
    echo "CONDA ENV $CONDA_ENV exist";
    exit;
 fi
@@ -116,25 +102,18 @@ CONDA_ENVIRONMENT_FILE_NAME="conda_environment_$CONDA_ENV.sh"
 echo "#!/usr/bin/env bash" > $CONDA_ENVIRONMENT_FILE_NAME
 echo "export PATH=$PATH" >> $CONDA_ENVIRONMENT_FILE_NAME
 echo "source $CONDA_HOME/etc/profile.d/conda.sh"  >> $CONDA_ENVIRONMENT_FILE_NAME
-# Installing Node Version Manager (NVM)
-echo "source $HOME/.bashrc" >> $CONDA_ENVIRONMENT_FILE_NAME 
-chmod +x  $CONDA_ENVIRONMENT_FILE_NAME
-cp $CONDA_ENVIRONMENT_FILE_NAME $DATA_DIR/$DEPLOY_VER/
-source $CONDA_ENVIRONMENT_FILE_NAME
-# 
-nvm install lts/iron
-npm install -g corepack
-yarn set version 4.4.1
-yarn install
- 
-#
-DEPLOYED_BACKSTAGE_VERSION_FILE_NAME='backstage_version.sh'
-echo "#!/usr/bin/env bash" > $DATA/$DEPLOYED_BACKSTAGE_VERSION_FILE_NAME
-echo "export DEPLOYED_BACKSTAGE_VERSION=$BACKSTAGE_VERSION" >>  $DATA/$DEPLOYED_BACKSTAGE_VERSION_FILE_NAME
-echo "export NODE_OPTIONS="${NODE_OPTIONS:-} --no-node-snapshot"" >>  $DATA/$DEPLOYED_BACKSTAGE_VERSION_FILE_NAME
-NODE_VERSION=$(node --version)
-echo "NODE_VERSION=$NODE_VERSION" >>  $DATA/$DEPLOYED_BACKSTAGE_VERSION_FILE_NAME
-echo "Installation of $CONDA_ENV finished"
 ##
-conda activate $CONDA_ENV
+cd /home/uxeng/dev/
+apt-get install git -y
+
+# Ignores
+echo "src/app.egg-info/" >> .gitignore
+echo "__pycache__/" >> .gitignore
+
+git config --global --add safe.directory /home/uxeng/dev
+git config --global user.email "you@example.com"
+git config --global user.name "Your Name"
+git init
+git add .
+git commit -m 'Updated'
 sleep infinity

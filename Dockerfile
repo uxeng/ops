@@ -5,6 +5,9 @@ RUN apt-get install unzip -y
 RUN apt-get install net-tools -y
 RUN apt-get autoclean -y
 RUN apt-get autoremove -y
+RUN DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC apt-get -y install tzdata
+RUN DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC apt-get install ntp -y
+RUN apt-get install vim -y
 RUN useradd -rm -d /home/uxeng -s /bin/bash -g root -G sudo -u 1001 uxeng
 COPY run_conda_installer.sh /home/uxeng/
 RUN mkdir -p /home/uxeng/apps/uxeng

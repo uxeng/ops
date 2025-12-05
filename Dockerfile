@@ -19,5 +19,6 @@ COPY ./src /home/uxeng/dev/src/
 COPY ./tests /home/uxeng/dev/tests/
 COPY build_test_lint.sh /home/uxeng/dev/
 RUN chmod +x /home/uxeng/run_conda_installer.sh
+RUN chmod +x /home/uxeng/dev/build_test_lint.sh
 WORKDIR /home/uxeng
 ENTRYPOINT ["/home/uxeng/run_conda_installer.sh"]

@@ -1,1 +1,5 @@
- recursive-include src *.dat
+recursive-include src *.dat
+exclude Dockerfile
+exclude environment.yml
+exclude run_conda_installer.sh
+exclude run_in_docker.sh

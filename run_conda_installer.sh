@@ -109,8 +109,7 @@ apt-get install git -y
 # Ignores
 echo "src/app.egg-info/" >> .gitignore
 echo "__pycache__/" >> .gitignore
-echo "dist/" >> .gitingore
-
+echo "dist/" >> .gitignore
 
 git config --global --add safe.directory /home/uxeng/dev
 git config --global user.email "you@example.com"

@@ -1,17 +1,4 @@
-# this file is *not* meant to cover or endorse the use of nox or pytest or
-# testing in general,
-#
-#  It's meant to show the use of:
-#
-#  - check-manifest
-#     confirm items checked into vcs are in your sdist
-#  - readme_renderer (when using a reStructuredText README)
-#     confirms your long_description will render correctly on PyPI.
-#
-#  and also to help confirm pull requests to this project.
-
 import os
-
 import nox
 
 nox.sessions = ["lint"]
@@ -23,9 +10,13 @@ nox.needs_version = ">= 2024.3.2"
 @nox.session
 def lint(session):
     session.install("flake8")
+    session.install("pylint")
     session.run(
         "flake8", "--exclude", ".nox,*.egg,build,data",
         "--select", "E,W,F", "."
+    )
+    session.run(
+        "pylint", "./src/", "./tests/"
     )
 
 

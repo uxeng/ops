@@ -18,6 +18,7 @@ COPY pyproject.toml /home/uxeng/dev/
 COPY LICENSE.txt /home/uxeng/dev/
 COPY README.md /home/uxeng/dev/
 COPY MANIFEST.in /home/uxeng/dev/
+COPY .coveragerc /home/uxeng/dev/
 COPY ./src /home/uxeng/dev/src/
 COPY ./tests /home/uxeng/dev/tests/
 COPY build_test_lint.sh /home/uxeng/dev/
@@ -25,3 +26,15 @@ RUN chmod +x /home/uxeng/run_conda_installer.sh
 RUN chmod +x /home/uxeng/dev/build_test_lint.sh
 WORKDIR /home/uxeng
 ENTRYPOINT ["/home/uxeng/run_conda_installer.sh"]
+
+
+# FROM python:3.12
+# RUN apt-get update && apt-get upgrade -y
+# RUN apt-get autoclean -y
+# RUN apt-get autoremove -y
+# RUN useradd -rm -d /home/gridx -s /bin/bash -g root -G sudo -u 1001 gridx
+# COPY requirements.txt /home/gridx/
+# WORKDIR /home/gridx
+# RUN pip install -r ./requirements.txt
+# ENTRYPOINT ["python3"]
+# CMD ["-m", "http.server","3000"]

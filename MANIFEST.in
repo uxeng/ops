@@ -4,3 +4,4 @@ exclude environment.yml
 exclude run_conda_installer.sh
 exclude run_in_docker.sh
 exclude build_test_lint.sh
+exclude .coveragerc

@@ -102,11 +102,12 @@ CONDA_ENVIRONMENT_FILE_NAME="conda_environment_$CONDA_ENV.sh"
 echo "#!/usr/bin/env bash" > $CONDA_ENVIRONMENT_FILE_NAME
 echo "export PATH=$PATH" >> $CONDA_ENVIRONMENT_FILE_NAME
 echo "source $CONDA_HOME/etc/profile.d/conda.sh"  >> $CONDA_ENVIRONMENT_FILE_NAME
+
+
 ##
 cd /home/uxeng/dev/
-
 apt-get install git -y
-# Ignores
+Ignores
 echo "src/app.egg-info/" >> .gitignore
 echo "__pycache__/" >> .gitignore
 echo "dist/" >> .gitignore
@@ -117,4 +118,7 @@ git config --global user.name "Your Name"
 git init
 git add .
 git commit -m 'Updated'
+source
+# jupyter notebook --no-browser --port=$NOTEBOOK_DSW_PORT --ip=0.0.0.0 --NotebookApp.token='' --NotebookApp.password=''  --allow-root >> $DATA_DIR/data_access/storage/jupyter_notebook.txt 2>&1 &   
+jupyter notebook --no-browser --port=3000 --ip=0.0.0.0 --NotebookApp.token='' --NotebookApp.password=''  --allow-root 
 sleep infinity

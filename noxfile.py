@@ -33,7 +33,8 @@ def build_and_check_dists(session):
 
 @nox.session(python=["3.12"])
 def tests(session):
-    session.install("pytest")
+    session.install("pytest==9.0.2")
+    session.install("Flask==3.1.2")
     build_and_check_dists(session)
 
     generated_files = os.listdir("dist/")

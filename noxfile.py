@@ -35,7 +35,7 @@ def build_and_check_dists(session):
 def tests(session):
     session.install("pytest==9.0.2")
     session.install("Flask==3.1.2")
-    session.install("structlog==25.5.0")
+    session.install("python-json-logger==2.0.7")
     build_and_check_dists(session)
 
     generated_files = os.listdir("dist/")

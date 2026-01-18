@@ -68,13 +68,13 @@ keywords = ["sample", "setuptools", "development"]
 # This should be your name or the name of the organization who originally
 # authored the project, and a valid email address corresponding to the name
 # listed.
-authors = [{ name = "A. Random Developer", email = "author@example.com" }]
+authors = [{ name = "Victor Bayon", email = "victor.bayon@gridx.com" }]
 
 # This should be your name or the names of the organization who currently
 # maintains the project, and a valid email address corresponding to the name
 # listed.
 maintainers = [
-  { name = "uxeng", email = "maintainer@uxeng.com" },
+  { name = "gridx", email = "victor.bayon@gridx.com" },
 ]
 
 # Classifiers help users find your project by categorizing it.

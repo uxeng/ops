@@ -4,7 +4,7 @@
 #
 CONTEXT="uxeng"
 if [[ -z "${DATA_DIR}" ]]; then
-  export DATA_DIR="/data"
+  export DATA_DIR="/home/uxeng"
 fi
 
 

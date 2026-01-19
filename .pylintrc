@@ -1,0 +1,11 @@
+[MASTER]
+init-hook='import sys; sys.path.insert(0, "src")'
+
+[MESSAGES CONTROL]
+# Disable import-error for tests since they may not be installed
+# The init-hook should handle this, but this provides a fallback
+disable=
+
+[FORMAT]
+max-line-length=100
+
